@@ -5,6 +5,10 @@ package primeThreads.driver;
 import primeThreads.util.FileProcessor;
 import primeThreads.store.StdoutDisplayInterface;
 import primeThreads.store.Results;
+import primeThreads.util.IsPrime;
+import primeThreads.util.Logger;
+
+import primeThreads.threadMgmt.CreateWorkers;
 
 public class Driver{
 
@@ -13,7 +17,7 @@ public class Driver{
 		//Command line argument verification
 		if(args.length != 4){
 			throw new IllegalArgumentException("PrimeThreads requires three"
-	+	" arguments to be passed in at runtime.");
+					+	" arguments to be passed in at runtime.");
 		};
 		String fileName = args[0];
 		int numThreads = 0, debugLevel = 0;
@@ -25,12 +29,12 @@ public class Driver{
 			System.out.println("Exception caught parsing argument 2: Number of Threads.");
 			System.out.println("Stack Trace: " );
 			throw new IllegalArgumentException("Argument 2 must be a string " +
-			"that can be parsed into an int, and between 1-5, inclusive.");
+					"that can be parsed into an int, and between 1-5, inclusive.");
 		}finally{
 			if(numThreads < 1 || numThreads > 5){
 				System.out.println("Number of threads argument passed not in valid range.");
 				throw new IllegalArgumentException("Argument 2 must be a string " +
-				"that can be parsed into an int, and between 1-5, inclusive.");
+						"that can be parsed into an int, and between 1-5, inclusive.");
 			}	
 		}
 
@@ -42,20 +46,31 @@ public class Driver{
 			System.out.println("Exception caught parsing argument 3: Debug Level.");
 			System.out.println("Stack Trace: " );
 			throw new IllegalArgumentException("Argument 3 must be a string " +
-			"that can be parsed into an int, and between 0-4, inclusive.");
+					"that can be parsed into an int, and between 0-4, inclusive.");
 		}finally{
 			if(debugLevel < 0 || debugLevel > 4){
 				System.out.println("Debug level argument passed not in valid range.");
 				throw new IllegalArgumentException("Argument 3 must be a string " +
-				"that can be parsed into an int, and between 0-4, inclusive.");
+						"that can be parsed into an int, and between 0-4, inclusive.");
 			}	
 		}
-	
+
+		//Initialize logger
+		Logger.setDebugValue(debugLevel);
+
+
 		//Begin actual driver sequence
+
+		//Create instances of FileProcessor, results, and isPrime
 		FileProcessor fp = new FileProcessor(fileName);
-		System.out.println(fp.readLineFromFile());
+		Results res = new Results();
+		IsPrime prime = new IsPrime();		
 
-
+		//Now create the CreateWorkers instance and pass each of these
+		//newly created objects into it to initialize workers.
+		CreateWorkers manager = new CreateWorkers(fp, prime, res);
+		manager.startWorkers(numThreads);
+		StdoutDisplayInterface sdi = res; 
 
 	} // end main(...)
 
