@@ -4,7 +4,7 @@
   <property name="src"                  value="src"/>
   <property name="BUILD"                value="BUILD"/>
   <property name="classes"              value="${BUILD}/classes"/>
-
+	<property name="doc"									value="doc"/>
 
   <target name="all" depends="compile_all"/>
 
@@ -30,8 +30,15 @@
             </manifest>
         </jar>
     </target>
+<!-- Create java docs and package into a tar file for easy scp -->
+<target name="javadoc" description="Generate javadocs">
+	<delete dir="${doc}"/>
+	<mkdir dir="${doc}"/>
+	<javadoc sourcepath="${src}" destdir="${doc}"/>
 
-
+	<delete file="PrimeThreads_Javadoc.tar" quiet="true" />
+	<tar destfile="PrimeThreads_Javadoc.tar" basedir="${doc}" compression="gzip"/>
+</target>
 
   <!-- ** means all subdirectories as well -->
   <!-- * means all files in the current directory -->

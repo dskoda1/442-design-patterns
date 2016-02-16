@@ -16,4 +16,4 @@ ant -buildfile src/build.xml run
 ## To create tarball for submission
 ant -buildfile src/build.xml tarzip
 
-
+scp dskoda1@remote.cs.binghamton.edu:~/Documents/442/david_skoda_assign2/primeThreads/PrimeThreads_Javadoc.tar ~/Documents/442/assignment2
