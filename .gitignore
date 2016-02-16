@@ -4,3 +4,4 @@ node_modules
 *.ppt
 *DS_Store
 /**/*.swp
+**/*.html
