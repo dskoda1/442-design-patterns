@@ -5,6 +5,7 @@ package primeThreads.driver;
 import primeThreads.util.FileProcessor;
 import primeThreads.store.StdoutDisplayInterface;
 import primeThreads.store.Results;
+import primeThreads.store.StoreDataI;
 import primeThreads.util.IsPrime;
 import primeThreads.util.Logger;
 
@@ -68,9 +69,13 @@ public class Driver{
 
 		//Now create the CreateWorkers instance and pass each of these
 		//newly created objects into it to initialize workers.
-		CreateWorkers manager = new CreateWorkers(fp, prime, res);
+		CreateWorkers manager = new CreateWorkers(fp, prime, (StoreDataI)res);
 		manager.startWorkers(numThreads);
-		StdoutDisplayInterface sdi = res; 
+
+		//Now print the results of what the workers did to stdout
+		((StdoutDisplayInterface) res).writeSumToScreen();
+
+
 
 	} // end main(...)
 

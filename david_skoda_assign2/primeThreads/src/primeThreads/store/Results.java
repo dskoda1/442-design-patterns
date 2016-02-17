@@ -4,16 +4,18 @@ import primeThreads.util.Logger;
 import java.util.Vector;
 import java.util.Iterator;
 
-public class Results implements StdoutDisplayInterface {
+public class Results implements StdoutDisplayInterface, StoreDataI {
 
 	// appropriate data structure as private data member
 	private Vector store;
 
 	// appropriate method to save prime number to the data structure
-	public void insert(int valToInsert){
-		Logger.writeMessage("Value being inserted into store: " + valToInsert,
+	public void insert(Object obj){
+		//Cast object to int for this implementation
+		int val = (int) obj;
+		Logger.writeMessage("Value being inserted into store: " + val,
 				Logger.DebugLevel.ADDVAL);	
-		this.store.addElement(valToInsert);
+		this.store.addElement(val);
 	}
 	public Results(){
 		super();
@@ -31,8 +33,9 @@ public class Results implements StdoutDisplayInterface {
 		System.out.println("The sum of all the prime numbers is: " + sum);
 	}
 	/**
-	*	sumValues: internal helper method that sums the data member vector
+	*	Internal helper method that sums the data member vector
 	*	and returns the result.
+	*	@return an int representing the sum of vector data
 	*/
 	private int sumValues(){
 

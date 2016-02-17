@@ -62,14 +62,15 @@ public final class FileProcessor{
 		String line = null;
 		try{
 			//Attempt to read a line, and close if no more lines
-			if((line = this.br.readLine()) == null){
-				this.br.close();
+			if(this.br.ready()){
+				if((line = this.br.readLine()) == null){
+					this.br.close();
+				}
 			}
 		}catch(IOException io){
 			io.printStackTrace();
 			System.out.println("IOException raised when reading a line "
 					+ io.getCause());
-			System.exit(1);
 		}
 		return line;
 	}
