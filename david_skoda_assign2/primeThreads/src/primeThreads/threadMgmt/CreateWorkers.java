@@ -25,7 +25,7 @@ public class CreateWorkers  {
 	/**
 	*	Creates the worker thread instances, starts them, and joins
 	* them together.
-	*	param: numThreads the number of worker threads to start
+	*	@param numThreads the number of worker threads to start
 	*/
 	public void startWorkers(int numThreads){
 
