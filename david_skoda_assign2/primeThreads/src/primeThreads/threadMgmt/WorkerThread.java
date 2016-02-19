@@ -38,4 +38,16 @@ public class WorkerThread implements Runnable  {
 			}
 		}	
 	}
+
+	@Override
+	public String toString(){
+
+    return "WorkerThread toString: " +
+    "\nFileProcessor: " + this.fp.toString() +
+    "\nIsPrime: " + this.prime.toString() +
+    "\nStoreDataI: " + this.si.toString() +
+    "\nEnd WorkerThread toString\n";
+
+  }
+
 }

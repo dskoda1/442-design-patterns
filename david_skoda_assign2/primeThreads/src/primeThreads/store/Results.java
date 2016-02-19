@@ -30,7 +30,12 @@ public class Results implements StdoutDisplayInterface, StoreDataI {
 	*/
 	public void writeSumToScreen() {
 		int sum = this.sumValues();
-		System.out.println("The sum of all the prime numbers is: " + sum);
+	
+		Logger.writeMessage(store.toString(), Logger.DebugLevel.CONTENTS);
+
+
+		String message = "The sum of all the prime numbers is: " + sum;
+		Logger.writeMessage(message, Logger.DebugLevel.RESULTS);	
 	}
 	/**
 	*	Internal helper method that sums the data member vector
@@ -46,6 +51,17 @@ public class Results implements StdoutDisplayInterface, StoreDataI {
 		}
 		return sum;
 	}
+
+	@Override
+	public String toString(){
+
+		return "Results class toString: " + 
+		"\nVector store: " + store.toString() +			
+		"\nEnd Results class toString\n";
+
+
+	}
+
 } 
 
 

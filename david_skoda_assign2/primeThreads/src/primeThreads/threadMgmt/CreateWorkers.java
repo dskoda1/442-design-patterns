@@ -49,6 +49,14 @@ public class CreateWorkers  {
 		}
 
 	}
+	@Override
+	public String toString(){
 
+		return "CreateWorkers toString: " + 
+		"\nFileProcessor: " + this.fp.toString() +
+		"\nIsPrime: " + this.prime.toString() + 
+		"\nStoreDataI: " + this.si.toString() + 
+		"\nEnd CreateWorkers toString\n";
 
+	}
 }

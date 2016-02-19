@@ -10,9 +10,14 @@ int main(){
 
 	ofstream myFile;
 	myFile.open("randoms.txt");
-	for(int i = 0; i < 1000000; i++)
-	{
-		myFile << i << endl;
+	for(int j = 0; j < 1000; j++){
+
+		for(int i = 0; i < 100; i++)
+		{
+			myFile << i << endl;
+		}
+
+
 	}
 	myFile.close();
 

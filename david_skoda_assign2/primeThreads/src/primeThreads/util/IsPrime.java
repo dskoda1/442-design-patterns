@@ -20,4 +20,10 @@ public class IsPrime {
 		return (val % 2 == 0) ? false : true;
 	}	
 
+	@Override
+	public String toString(){
+
+		return "IsPrime toString: ";
+	}	
+
 }

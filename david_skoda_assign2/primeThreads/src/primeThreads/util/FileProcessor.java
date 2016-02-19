@@ -25,7 +25,7 @@ public final class FileProcessor{
 				+ "use this class.");
 		System.exit(1);
 	}
-	/*
+	/**
 	 * Class constructor.
 	 * Constructs the BufferedReader after opening the correct file that
 	 * will be used in later file I/O operations.
