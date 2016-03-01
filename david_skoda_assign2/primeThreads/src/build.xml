@@ -58,16 +58,16 @@
 
 <target name="run" depends="jar">
         <java jar="${BUILD}/jar/primeThreads.jar"  fork="true">
-		<arg value="${arg0}"/>
+        <arg value="${arg0}"/>
 		<arg value="${arg1}"/>
 		<arg value="${arg2}"/>
-        </java>
+				</java>
 	
     </target>
 <target name="tarzip"> 
   <tar destfile="${BUILD}/dist/david_skoda_assign2.tar.gz"
        compression="gzip">
-    <tarfileset dir="." prefix="david_skoda__assign2/primeThreads">
+    <tarfileset dir="." prefix="david_skoda_assign2/primeThreads">
       <include name="src/**/*.java"/>
       <include name="src/build.xml"/>
       <include name="README.txt"/>
