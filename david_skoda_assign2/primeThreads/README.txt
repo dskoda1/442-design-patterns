@@ -5,7 +5,7 @@ PROJECT 2 README FILE
 Due Date: Monday, February 29, 2016
 Submission Date: Monday, February 29, 2016
 Grace Period Used This Project: 0 Days
-Grace Period Remaining: 0 Days
+Grace Period Remaining: 3 Days
 Author(s): David Skoda
 e-mail(s): dskoda1@binghamton.edu
 
