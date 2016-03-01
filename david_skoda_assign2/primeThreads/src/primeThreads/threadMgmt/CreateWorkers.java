@@ -12,14 +12,14 @@ public class CreateWorkers  {
 	private IsPrime prime;
 	private StoreDataI si;
 
-	public CreateWorkers(FileProcessor fp, IsPrime prime, StoreDataI si){
+	public CreateWorkers(FileProcessor fpIn, IsPrime primeIn, StoreDataI siIn){
 		super();
 		Logger.writeMessage("Constructor for CreateWorkers Class called.",
 				Logger.DebugLevel.CONSTRUCTOR);
 
-		this.fp = fp;		
-		this.prime = prime;
-		this.si = si;
+		this.fp = fpIn;		
+		this.prime = primeIn;
+		this.si = siIn;
 	}
 
 	/**

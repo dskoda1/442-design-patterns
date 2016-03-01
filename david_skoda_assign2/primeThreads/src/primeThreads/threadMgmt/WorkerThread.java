@@ -10,14 +10,14 @@ public class WorkerThread implements Runnable  {
 	private IsPrime prime;
 	private StoreDataI si;
 
-	public WorkerThread(FileProcessor fp, IsPrime prime, StoreDataI si){
+	public WorkerThread(FileProcessor fpIn, IsPrime primeIn, StoreDataI siIn){
 		super();
 		Logger.writeMessage("Constructor for WorkerThread Class called.",
 				Logger.DebugLevel.CONSTRUCTOR);
 
-		this.fp = fp;		
-		this.prime = prime;
-		this.si = si;
+		this.fp = fpIn;		
+		this.prime = primeIn;
+		this.si = siIn;
 	}
 
 	/**

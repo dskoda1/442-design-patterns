@@ -61,14 +61,18 @@
 		<arg value="${arg0}"/>
 		<arg value="${arg1}"/>
 		<arg value="${arg2}"/>
-		<arg value="${arg3}"/>
         </java>
 	
     </target>
-
-<target name="tarzip" > 
-	    <delete file="./firstName_lastName_assign2.tar" quiet="true" /> 
-	    <tar destfile="${BUILD}/dist/firstName_lastName_assign2.tar.gz" basedir="../../" compression="gzip"/>
+<target name="tarzip"> 
+  <tar destfile="${BUILD}/dist/david_skoda_assign2.tar.gz"
+       compression="gzip">
+    <tarfileset dir="." prefix="david_skoda__assign2/primeThreads">
+      <include name="src/**/*.java"/>
+      <include name="src/build.xml"/>
+      <include name="README.txt"/>
+    </tarfileset>
+  </tar>
 </target>
 
 </project>

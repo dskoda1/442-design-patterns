@@ -21,7 +21,7 @@ public final class FileProcessor{
 	 */
 	public FileProcessor() {
 		super();
-		System.out.println("You need to pass a string file name in order to "
+		System.err.println("You need to pass a string file name in order to "
 				+ "use this class.");
 		System.exit(1);
 	}
