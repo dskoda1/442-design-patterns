@@ -1,11 +1,17 @@
 package studentRecordsBackup.driver;
 
+import studentRecordsBackup.util.Logger;
+import studentRecordsBackup.util.FileProcessor;
+
+
+import studentRecordsBackup.bst.BST;
+import studentRecordsBackup.bst.Node;
 
 public class Driver{
 
 	public static void main(String args[]) {
 		//Command line argument verification
-/*		if(args.length > 3){
+		if(args.length > 3){
 			throw new IllegalArgumentException("PrimeThreads requires three"
 					+	" arguments to be passed in at runtime.\n"
 					+ "More than three were passed into the execution of this program.\n"
@@ -27,28 +33,28 @@ public class Driver{
 					+ "Usage: \n\t"
 					+ "java path/to/driver <arg1=Input file> <arg2=Num threads> <arg3=Debug level>\n\n");
 		}	
-*/
+
 		String fileName = args[0];
-	//	int numThreads = 0, debugLevel = 0;
-	/*	//Verify number of threads argument
+		int updateValue = 0, debugLevel = 0;
+		//Verify number of threads argument
 		try{
-			numThreads = Integer.valueOf(args[1]);
+			updateValue = Integer.valueOf(args[1]);
 		}catch(NumberFormatException nfe){
-			System.err.println("Exception caught parsing argument 2: Number of Threads.");
+			System.err.println("Exception caught parsing argument 2: Update Value.");
 			System.err.println("Stack Trace: " );
 			nfe.printStackTrace();
 			throw new IllegalArgumentException("Argument 2 must be a string " +
-					"that can be parsed into an int, and between 1-5, inclusive.");
+					"that can be parsed into an int, and not cause any integer overflow.");
 		}finally{
-			if(numThreads < 1 || numThreads > 5){
+			/*if(numThreads < 1 || numThreads > 5){
 				System.err.println("Number of threads argument passed not in valid range.");
 				throw new IllegalArgumentException("Argument 2 must be a string " +
 						"that can be parsed into an int, and between 1-5, inclusive.");
 			}	
+			*/
 		}
-*/
 		//Verify debug level argument
-/*		try{
+		try{
 			debugLevel = Integer.valueOf(args[2]);
 		}catch(NumberFormatException nfe){
 			System.err.println("Exception caught parsing argument 3: Debug Level.");
@@ -63,12 +69,25 @@ public class Driver{
 						"that can be parsed into an int, and between 0-4, inclusive.");
 			}	
 		}
-*/
 		//Initialize logger
 		Logger.setDebugValue(debugLevel);
 
-
 		//Begin actual driver sequence
+	
+		BST bst = new BST();
+		BST backupOne = new BST();
+		BST backupTwo = new BST();
+		FileProcessor fp = new FileProcessor(fileName);
+		String line = "";
+		while((line = fp.readLineFromFile()) != null){
+			bst.insert(Integer.valueOf(line));
+
+
+
+
+		}
+
+
 
 	} // end main(...)
 

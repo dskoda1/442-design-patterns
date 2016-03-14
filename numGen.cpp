@@ -1,6 +1,8 @@
 #include <fstream>
 #include <iostream>
 #include <ostream>
+#include <time.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -10,14 +12,11 @@ int main(){
 
 	ofstream myFile;
 	myFile.open("randoms.txt");
-	for(int j = 0; j < 1000; j++){
+	
+	srand(time(NULL));
 
-		for(int i = 0; i < 100; i++)
-		{
-			myFile << i << endl;
-		}
-
-
+	for(int i = 0; i < 1000000; i++){
+			myFile << rand() << endl;
 	}
 	myFile.close();
 
