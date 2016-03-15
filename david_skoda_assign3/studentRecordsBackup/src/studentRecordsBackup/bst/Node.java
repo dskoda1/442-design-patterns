@@ -1,7 +1,7 @@
 package studentRecordsBackup.bst;
 
 import studentRecordsBackup.util.Logger;
-
+import java.util.ArrayList;
 
 public class Node implements ObserverI, SubjectI{
 
@@ -10,12 +10,17 @@ public class Node implements ObserverI, SubjectI{
 	protected Node left;
 	protected Node right;
 
+	protected ArrayList<ObserverI> observers;
+
 	public Node(){
 		super();
 		this.bNumber = 0;
 		this.description = "";
 		this.left = null;
 		this.right = null;
+		this.observers = new ArrayList<ObserverI>();
+		Logger.writeMessage("Constructor for Node Class called. ",
+			Logger.DebugLevel.CONSTRUCTOR); 
 	}
 
 	public Node(int bNumIn, String descriptionIn){
@@ -24,13 +29,16 @@ public class Node implements ObserverI, SubjectI{
 		this.description = descriptionIn;
 		this.left = null;
 		this.right = null;
+		this.observers = new ArrayList<ObserverI>();
 		Logger.writeMessage("Constructor for Node Class called. ",
 			Logger.DebugLevel.CONSTRUCTOR); 
 	}
 
 	//TODO
 	public void add(ObserverI obsIn){
-
+		if(obsIn != null){
+			observers.add(obsIn);
+		}
 	}
 
 	//TODO
