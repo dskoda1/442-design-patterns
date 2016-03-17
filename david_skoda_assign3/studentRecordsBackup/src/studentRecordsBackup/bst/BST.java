@@ -7,6 +7,7 @@ public class BST{
 
 	private Node head;
 	private int sum;
+	private int max;
 	public BST(){
 		super();
 		Logger.writeMessage("Creating a BST", Logger.DebugLevel.CONSTRUCTOR);
@@ -23,15 +24,23 @@ public class BST{
 				Logger.DebugLevel.INSERT);  
 		this.insert(this.head, newNode); 
 	}
+
+	public void insert(Node newNode){
+		this.insert(this.head, newNode);
+		Logger.writeMessage("Inserting node into BST \n" + newNode.toString(),
+				Logger.DebugLevel.INSERT);  
+	}
+
 	/**
-	*	Internal insert method that recursively finds where to insert.
-	* @param comp The node being compared for insert positioning. 	
-	*	@param newNode the node being inserted into the tree.
-	*/
+	 *	Internal insert method that recursively finds where to insert.
+	 * @param comp The node being compared for insert positioning. 	
+	 *	@param newNode the node being inserted into the tree.
+	 */
 	private void insert(Node comp, Node newNode){
 
 		if(this.head == null){
 			this.head = newNode;
+			this.max = newNode.bNumber;
 			return;
 		}else if(newNode.bNumber < comp.bNumber){
 			//check for null, then go down left child
@@ -40,21 +49,25 @@ public class BST{
 			}else{
 				//insert node
 				comp.left = newNode;
+				if(this.max < newNode.bNumber)
+					this.max = newNode.bNumber;
 			}
 		}else{
 			if(comp.right != null){
 				this.insert(comp.right, newNode);
 			}else{
 				comp.right = newNode;
+				if(this.max < newNode.bNumber)
+					this.max = newNode.bNumber;
 			}
 		}
 	}
 
 
 	/**
-	*	Internal mapping function; takes a node and a consumer
-	* function, and applies the function onto each node in order.
-	**/
+	 *	Internal mapping function; takes a node and a consumer
+	 * function, and applies the function onto each node in order.
+	 **/
 	private void traverseInOrder(Node n, Consumer<Node> fn){
 		if(n != null){
 			traverseInOrder(n.left, fn);
@@ -63,20 +76,32 @@ public class BST{
 		}
 	}
 
+	public void updateNodes(int updateValue){
+		this.traverseInOrder(this.head, (node -> { 
+					if(this.max == node.bNumber){
+						node.bNumber += updateValue;
+						node.notifyObservers(updateValue);
+						System.out.println("Updating max value of: " + (node.bNumber - updateValue));
+					}
+					node.bNumber += updateValue;
+					node.notifyObservers(updateValue);
 
-	/**
-	*	Traverses the tree and prints to std out
-	* each node in this order; uses an internal method to recursively
-	* accomplish this.
-	**/ 
-	public void printTree(){
-		this.traverseInOrder(this.head, (a -> System.out.println(a.toString())));
+					})); 
 	}
 
 	/**
-	* Traverse the tree and get the sum of all nodes bnumbers.
-	**/
-	public int sumAllRecords(){
+	 *	Traverses the tree and prints to std out
+	 * each node in this order; uses an internal method to recursively
+	 * accomplish this.
+	 **/ 
+	public String printInOrder(){
+		this.traverseInOrder(this.head, (a -> System.out.println(a.toString())));
+		return "";
+	}
+	/**
+	 * Traverse the tree and get the sum of all nodes bnumbers.
+	 **/
+	public int printBSum(){
 		this.sum = 0;
 		this.traverseInOrder(this.head, (n -> this.sum += n.bNumber));
 		return this.sum;

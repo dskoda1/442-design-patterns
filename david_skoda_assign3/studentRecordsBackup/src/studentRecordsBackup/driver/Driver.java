@@ -2,8 +2,8 @@ package studentRecordsBackup.driver;
 
 import studentRecordsBackup.util.Logger;
 import studentRecordsBackup.util.FileProcessor;
-
-
+import java.util.ArrayList;
+import studentRecordsBackup.util.BSTBuilder;
 import studentRecordsBackup.bst.BST;
 import studentRecordsBackup.bst.Node;
 
@@ -74,7 +74,7 @@ public class Driver{
 
 		//Begin actual driver sequence
 	
-		BST bst = new BST();
+/*		BST bst = new BST();
 		BST backupOne = new BST();
 		BST backupTwo = new BST();
 		FileProcessor fp = new FileProcessor(fileName);
@@ -82,8 +82,27 @@ public class Driver{
 		while((line = fp.readLineFromFile()) != null){
 			bst.insert(Integer.valueOf(line));
 		}
-		System.out.println(bst.sumAllRecords());
+*/
+		BSTBuilder builder = new BSTBuilder(fileName);
 
+		ArrayList<BST> trees = builder.buildTrees();
+		BST bst = trees.get(0); 
+		
+		for(BST tree : trees){
+			System.out.println(tree.printBSum());
+
+		}
+		bst.updateNodes(updateValue);
+		for(BST tree : trees){
+			System.out.println(tree.printBSum());
+
+		}
+
+
+		/*Logger.writeMessage(bst.printInOrder(), Logger.DebugLevel.PRINT); 
+		Logger.writeMessage("The sum of all student B-Numbers is: " + 
+			bst.printBSum(), Logger.DebugLevel.SUM);
+		*/
 	} // end main(...)
 
 } // end public class Driver

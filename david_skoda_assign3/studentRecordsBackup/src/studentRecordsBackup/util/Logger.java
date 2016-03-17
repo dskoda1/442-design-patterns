@@ -7,7 +7,7 @@ public class Logger{
 		INSERT,
 		SUM,
 		UPDATE,
-		RUN,
+		PRINT,
 		CONSTRUCTOR 
 	};
 
@@ -19,7 +19,7 @@ public class Logger{
 			case 0: debugLevel = DebugLevel.INSERT; break;
 			case 1: debugLevel = DebugLevel.SUM; break;
 			case 2: debugLevel = DebugLevel.UPDATE; break;
-			case 3: debugLevel = DebugLevel.RUN; break;
+			case 3: debugLevel = DebugLevel.PRINT; break;
 			case 4: debugLevel = DebugLevel.CONSTRUCTOR; break;
 		}
 	}
