@@ -81,13 +81,8 @@ public class Driver{
 		String line = "";
 		while((line = fp.readLineFromFile()) != null){
 			bst.insert(Integer.valueOf(line));
-
-
-
-
 		}
-
-
+		System.out.println(bst.sumAllRecords());
 
 	} // end main(...)
 

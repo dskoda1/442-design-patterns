@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Node implements ObserverI, SubjectI{
 
 	protected int bNumber;
-	private String description;
 	protected Node left;
 	protected Node right;
 
@@ -15,7 +14,6 @@ public class Node implements ObserverI, SubjectI{
 	public Node(){
 		super();
 		this.bNumber = 0;
-		this.description = "";
 		this.left = null;
 		this.right = null;
 		this.observers = new ArrayList<ObserverI>();
@@ -23,10 +21,9 @@ public class Node implements ObserverI, SubjectI{
 			Logger.DebugLevel.CONSTRUCTOR); 
 	}
 
-	public Node(int bNumIn, String descriptionIn){
+	public Node(int bNumIn){
 		super();
 		this.bNumber = bNumIn;
-		this.description = descriptionIn;
 		this.left = null;
 		this.right = null;
 		this.observers = new ArrayList<ObserverI>();
@@ -60,10 +57,6 @@ public class Node implements ObserverI, SubjectI{
 		this.bNumber = bNumIn;
 	}
 
-	public void setDescription(String descriptionIn){
-		this.description = descriptionIn;
-	}
-
 	public void setLeftChild(Node leftIn){
 		this.left = leftIn;
 	}
@@ -74,9 +67,6 @@ public class Node implements ObserverI, SubjectI{
 
 	public int getBnumber(){
 		return this.bNumber;
-	}
-	public String getDescription(){
-		return this.description;
 	}
 
 	public Node getLeftChild(){
@@ -91,8 +81,7 @@ public class Node implements ObserverI, SubjectI{
 	public String toString(){
 
 		return "Node" +
-			"\nB-number: " + bNumber + 
-			"\nDescription: " + description;
+			"\nB-number: " + bNumber; 
 
 	}
 

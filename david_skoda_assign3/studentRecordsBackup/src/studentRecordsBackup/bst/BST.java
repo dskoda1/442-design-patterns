@@ -2,7 +2,7 @@ package studentRecordsBackup.bst;
 
 import studentRecordsBackup.util.Logger;
 import studentRecordsBackup.bst.Node;
-
+import java.util.function.Consumer;
 public class BST{
 
 	private Node head;
@@ -18,17 +18,7 @@ public class BST{
 	 *	@param bNumIn the b-number to insert as a new node.
 	 **/
 	public void insert(int bNumIn){
-		this.insert(bNumIn, ""); 
-	}
-	/**
-	 *	Method which triggers an insert into the BST;
-	 *	It calls an overloaded version of insert with "" as the description. 
-	 *	@param bNumIn the b-number for the new node.
-	 *	@param descIn the description for the new node
-	 **/
-	public void insert(int bNumIn, String descIn){
-
-		Node newNode = new Node(bNumIn, descIn);
+		Node newNode = new Node(bNumIn);
 		Logger.writeMessage("Inserting node into BST \n" + newNode.toString(),
 				Logger.DebugLevel.INSERT);  
 		this.insert(this.head, newNode); 
@@ -60,25 +50,27 @@ public class BST{
 		}
 	}
 
+
 	/**
-	*	Traverses the tree in an in-order fashion, prints to std out
+	*	Internal mapping function; takes a node and a consumer
+	* function, and applies the function onto each node in order.
+	**/
+	private void traverseInOrder(Node n, Consumer<Node> fn){
+		if(n != null){
+			traverseInOrder(n.left, fn);
+			fn.accept(n);	
+			traverseInOrder(n.right, fn);
+		}
+	}
+
+
+	/**
+	*	Traverses the tree and prints to std out
 	* each node in this order; uses an internal method to recursively
 	* accomplish this.
 	**/ 
-	public void inOrderTraversal(){
-		this.inOrderHelper(this.head);
-	}
-
-	/**
-	*	Internal helper for doing an in order traversal of the tree.
-	* @param n the node to print out and explore
-	**/
-	private void inOrderHelper(Node n){
-		if(n != null){
-			this.inOrderHelper(n.left);
-			System.out.println(n.toString());
-			this.inOrderHelper(n.right);
-		}
+	public void printTree(){
+		this.traverseInOrder(this.head, (a -> System.out.println(a.toString())));
 	}
 
 	/**
@@ -86,24 +78,11 @@ public class BST{
 	**/
 	public int sumAllRecords(){
 		this.sum = 0;
-		this.sumRecordsHelper(this.head);	
+		this.traverseInOrder(this.head, (n -> this.sum += n.bNumber));
 		return this.sum;
-	}
-	
-	/**
-	* Internal helper function for summing up all the nodes.
-	* @param n the node to explore and sum.
-	**/
-	private void sumRecordsHelper(Node n){
-		if(n != null){
-			this.sumRecordsHelper(n.left);			
-			this.sum += n.bNumber;
-			this.sumRecordsHelper(n.right);			
-		}
 	}
 
 	public String toString(){
-
 		return "TODO: BST toString()";
 	}
 
