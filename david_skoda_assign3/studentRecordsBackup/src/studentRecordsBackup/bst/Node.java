@@ -20,7 +20,7 @@ public class Node implements ObserverI, SubjectI{
 	protected HashMap<OddEvenFilterI, ObserverI> observers;
 	//protected ArrayList<ObserverI> observers;
 	protected HashSet<ObserverI> observersHS;
-	
+
 	public Node(){
 		super();
 		this.bNumber = 0;
@@ -90,12 +90,12 @@ public class Node implements ObserverI, SubjectI{
 			if(obj instanceof Integer){
 				//Check filter function
 				int updateValue = (int)obj; 
-		//		if(this.filter.check(updateValue)){
-					Logger.writeMessage("Updating a node from old value of "
-							+ this.bNumber + " to " + (this.bNumber + updateValue), 
-							Logger.DebugLevel.UPDATE);
-					this.bNumber += updateValue;
-			//	}	
+				//		if(this.filter.check(updateValue)){
+				Logger.writeMessage("Updating a node from old value of "
+						+ this.bNumber + " to " + (this.bNumber + updateValue), 
+						Logger.DebugLevel.UPDATE);
+				this.bNumber += updateValue;
+				//	}	
 
 			}else{
 
@@ -104,13 +104,13 @@ public class Node implements ObserverI, SubjectI{
 
 
 	@Override
-	public boolean equals(Object obj){
-		if(obj instanceof Node){
-			return ( ((Node) obj).bNumber == this.bNumber);
-		}else{
-			return false;
+		public boolean equals(Object obj){
+			if(obj instanceof Node){
+				return ( ((Node) obj).bNumber == this.bNumber);
+			}else{
+				return false;
+			}
 		}
-	}
 
 	public void setBnumber(int bNumIn){
 		this.bNumber = bNumIn;
