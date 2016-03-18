@@ -73,16 +73,6 @@ public class Driver{
 		Logger.setDebugValue(debugLevel);
 
 		//Begin actual driver sequence
-	
-/*		BST bst = new BST();
-		BST backupOne = new BST();
-		BST backupTwo = new BST();
-		FileProcessor fp = new FileProcessor(fileName);
-		String line = "";
-		while((line = fp.readLineFromFile()) != null){
-			bst.insert(Integer.valueOf(line));
-		}
-*/
 		BSTBuilder builder = new BSTBuilder(fileName);
 
 		ArrayList<BST> trees = builder.buildTrees();
@@ -92,17 +82,13 @@ public class Driver{
 			System.out.println(tree.printBSum());
 
 		}
+		//Update the nodes in the first tree now
 		bst.updateNodes(updateValue);
 		for(BST tree : trees){
 			System.out.println(tree.printBSum());
 
 		}
 
-
-		/*Logger.writeMessage(bst.printInOrder(), Logger.DebugLevel.PRINT); 
-		Logger.writeMessage("The sum of all student B-Numbers is: " + 
-			bst.printBSum(), Logger.DebugLevel.SUM);
-		*/
 	} // end main(...)
 
 } // end public class Driver

@@ -8,14 +8,18 @@ public class BST{
 	private Node head;
 	private int sum;
 	private int max;
+	
+	/**
+	*	Constructs an empty BST.
+	**/
 	public BST(){
 		super();
-		Logger.writeMessage("Creating a BST", Logger.DebugLevel.CONSTRUCTOR);
 		this.head = null;
 	}
 	/**
-	 *	Method which inserts a new node given only a B-number;
-	 *	It calls an overloaded version of insert with "" as the description. 
+	 *	Method which inserts a new node given only a B-number.
+	 *	It calls the internal insert method after creating
+	 * the new Node.
 	 *	@param bNumIn the b-number to insert as a new node.
 	 **/
 	public void insert(int bNumIn){
@@ -25,6 +29,12 @@ public class BST{
 		this.insert(this.head, newNode); 
 	}
 
+	/**
+	*	This inserts a given node into the tree.
+	*	It calls the internal insert method with the proper
+	* arguments.
+	*	@param newNode the node to insert.
+	**/
 	public void insert(Node newNode){
 		this.insert(this.head, newNode);
 		Logger.writeMessage("Inserting node into BST \n" + newNode.toString(),
@@ -65,23 +75,33 @@ public class BST{
 
 
 	/**
-	 *	Internal mapping function; takes a node and a consumer
+	 *	Internal mapping method; takes a node and a consumer
 	 * function, and applies the function onto each node in order.
+	 * @param n the node to explore
+	 * @param fn the consumer function (Single param, no return val) 
+	 * 	to apply to the node and pass recursively to it's children.
 	 **/
-	private void traverseInOrder(Node n, Consumer<Node> fn){
+	private void inOrderMap(Node n, Consumer<Node> fn){
 		if(n != null){
-			traverseInOrder(n.left, fn);
+			inOrderMap(n.left, fn);
 			fn.accept(n);	
-			traverseInOrder(n.right, fn);
+			inOrderMap(n.right, fn);
 		}
 	}
 
+	/**
+	*	Updates the relevant nodes with the fiven updateValue.
+	*	This calls the internal inOrderMap method, and if the node passes
+	*	its observer check predicate (filter) then gets its bNumber
+	* incremented. It also notifies any observers with the value to update.
+	*	@param updateValue the int value to increment bNumber by potentially.
+	*	@return void
+	**/
 	public void updateNodes(int updateValue){
-		this.traverseInOrder(this.head, (node -> { 
+		this.inOrderMap(this.head, (node -> { 
 					if(this.max == node.bNumber){
 						node.bNumber += updateValue;
 						node.notifyObservers(updateValue);
-						System.out.println("Updating max value of: " + (node.bNumber - updateValue));
 					}
 					node.bNumber += updateValue;
 					node.notifyObservers(updateValue);
@@ -90,20 +110,20 @@ public class BST{
 	}
 
 	/**
-	 *	Traverses the tree and prints to std out
-	 * each node in this order; uses an internal method to recursively
-	 * accomplish this.
-	 **/ 
+	* Print out all the nodes of this tree in order. 
+	* Uses the internal inOrderMap method.
+	**/ 
 	public String printInOrder(){
-		this.traverseInOrder(this.head, (a -> System.out.println(a.toString())));
+		this.inOrderMap(this.head, (a -> System.out.println(a.toString())));
 		return "";
 	}
 	/**
-	 * Traverse the tree and get the sum of all nodes bnumbers.
+	 * Traverse the tree and savethe sum of all nodes bnumbers.
+	 * Uses the internal inOrderMap method.
 	 **/
 	public int printBSum(){
 		this.sum = 0;
-		this.traverseInOrder(this.head, (n -> this.sum += n.bNumber));
+		this.inOrderMap(this.head, (n -> this.sum += n.bNumber));
 		return this.sum;
 	}
 

@@ -29,13 +29,13 @@ public class BSTBuilder{
 
 
 			Node ogNode = new Node(bNum);
-			//		Node oddNode = new Node(bNum, (n -> (n % 2) == 1 ? true : false)); 		
-			//		Node evenNode = new Node(bNum, (n -> (n % 2) == 0 ? true : false)); 		
-			Node oddNode = new Node(bNum, new OddFilter());
-			Node evenNode = new Node(bNum, new EvenFilter());
+			//Node oddNode = new Node(bNum, (n -> (n % 2) == 1 ? true : false)); 		
+			//Node evenNode = new Node(bNum, (n -> (n % 2) == 0 ? true : false)); 		
+			Node oddNode = new Node(bNum);
+			Node evenNode = new Node(bNum);
 
-			ogNode.add(oddNode);
-			ogNode.add(evenNode);
+			ogNode.add(oddNode, new OddFilter());
+			ogNode.add(evenNode, new EvenFilter());
 
 			og.insert(ogNode);
 			odd.insert(oddNode);

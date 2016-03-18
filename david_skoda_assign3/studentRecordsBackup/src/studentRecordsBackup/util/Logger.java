@@ -13,7 +13,6 @@ public class Logger{
 
 	private static DebugLevel debugLevel;
 
-
 	public static void setDebugValue (int levelIn) {
 		switch (levelIn) {
 			case 0: debugLevel = DebugLevel.INSERT; break;
