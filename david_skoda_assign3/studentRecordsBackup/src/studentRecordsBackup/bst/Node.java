@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.function.Predicate;
 import java.lang.IllegalArgumentException;
-
 public class Node implements ObserverI, SubjectI{
 
   protected int bNumber;
@@ -43,6 +42,7 @@ public class Node implements ObserverI, SubjectI{
    **/
   @Override public void add(ObserverI obsIn, Predicate<Integer> filterIn){
     if(obsIn != null && filterIn != null){
+      System.out.println(filterIn.hashCode());
       observers.put(filterIn, obsIn);
     }
   }
@@ -56,18 +56,23 @@ public class Node implements ObserverI, SubjectI{
   /**
    *	Go through this nodes observers and notify the ones
    *	that want the update.
-   *	This method iterates over this nodes observers key set
-   *	which is a bunch of predicate functions, and uses their 
-   * 	test method to decide whether or not to send the update to
-   * 	the corresponding observer.
+   *  This method iterates over the hashMap keys(which are predicates)
+   *  and filters based on which ones pass the test. It then maps the
+   *  corresponding observer over the predicate, and last calls the 
+   *  update method on them.
    *  @param updateValue the int value to update nodes with
    **/
   @Override public void notifyObservers(int updateValue){
-    for(Predicate<Integer> filter : this.observers.keySet()){
-      if(filter.test(updateValue)){
-        this.observers.get(filter).update(updateValue);
-      }
-    } 
+    //Get the key set
+    this.observers.keySet()
+      //Transform it into a stream
+      .stream()
+      //Filter them based on the test
+      .filter(pred -> pred.test(updateValue))
+      //Get the corresponding observer 
+      .map(pred -> this.observers.get(pred))
+      //Call the update method onto each observer
+      .forEach(obs -> obs.update(updateValue));
   }
 
   /**

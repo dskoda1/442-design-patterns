@@ -7,16 +7,29 @@ import java.util.ArrayList;
 import studentRecordsBackup.util.FileProcessor;
 import studentRecordsBackup.util.Logger;
 import java.lang.NumberFormatException;
+import java.util.function.Predicate;
+import java.util.HashMap;
+
 public class BSTBuilder{
 
   private FileProcessor fp;
+  private HashMap<String, Predicate<Integer>> FilterPredicates;
+
+
 
   public BSTBuilder(String fileNameIn){
     this.fp = new FileProcessor(fileNameIn);
     Logger.writeMessage("Constructor for BSTBuilder Class called.",
         Logger.DebugLevel.CONSTRUCTOR);
-
+  
+    this.FilterPredicates = new HashMap<String, Predicate<Integer>>()
+    {{
+        put("Odd", (n -> (n % 2) == 1 ? true : false));
+        put("Even", (n -> (n % 2) == 0 ? true : false));
+    }};
   }
+
+  
 
   /**
    *	Builds three trees, with 2 as observers and one as subject.
@@ -52,10 +65,11 @@ public class BSTBuilder{
         Node evenNode = new Node(bNum);
 
         //Add the oddNode with a lambda filter predicate testing for odd values.
-        ogNode.add(oddNode, (n -> (n % 2) == 1 ? true : false));
+        //ogNode.add(oddNode, this.FilterPredicates.get("Odd")); 
+        ogNode.add(oddNode,(n -> (n % 2) == 1 ? true : false)); 
 
         //Add the evenNode with a lambda filter predicate testing for even values.
-        ogNode.add(evenNode, (n -> (n % 2) == 0 ? true : false));
+        ogNode.add(evenNode, this.FilterPredicates.get("Even"));
 
         //Insert the nodes into the appropriate trees here.
         og.insert(ogNode);

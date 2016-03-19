@@ -42,9 +42,6 @@ FILES:
            -----------------Driver.java
            ----------util
            -----------------BSTBuilder.java
-           -----------------OddEvenFilterI.java
-           -----------------EvenFilter.java
-           -----------------OddFilter.java
            -----------------FileProcessor.java
            -----------------Logger.java
            ----------bst	   
