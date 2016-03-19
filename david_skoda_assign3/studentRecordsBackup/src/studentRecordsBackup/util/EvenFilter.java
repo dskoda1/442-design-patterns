@@ -6,10 +6,10 @@ import studentRecordsBackup.util.Logger;
 
 public class EvenFilter implements OddEvenFilterI{
 
-	public EvenFilter(){
-		Logger.writeMessage("Constructor for EvenFilter Class called.",
-				Logger.DebugLevel.CONSTRUCTOR);
-	}
+  public EvenFilter(){
+    Logger.writeMessage("Constructor for EvenFilter Class called.",
+        Logger.DebugLevel.CONSTRUCTOR);
+  }
 
   public boolean check(Object obj){
     if(obj instanceof Integer){
@@ -17,8 +17,8 @@ public class EvenFilter implements OddEvenFilterI{
     }
     else{
       throw new IllegalArgumentException("Argument " +
-        obj.toString() + " passed into EvenFilter::Check() is "
-      + "invalid.");
+          obj.toString() + " passed into EvenFilter::Check() is "
+          + "invalid.");
     }
   }
 }
