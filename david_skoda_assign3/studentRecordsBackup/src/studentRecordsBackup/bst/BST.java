@@ -3,18 +3,24 @@ package studentRecordsBackup.bst;
 import studentRecordsBackup.util.Logger;
 import studentRecordsBackup.bst.Node;
 import java.util.function.Consumer;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 public class BST{
 
 	private Node head;
 	private int sum;
 	private int max;
-	
+
 	/**
-	*	Constructs an empty BST.
-	**/
+	 *	Constructs an empty BST.
+	 **/
 	public BST(){
 		super();
 		this.head = null;
+		Logger.writeMessage("Constructor for BST Class called.",
+				Logger.DebugLevel.CONSTRUCTOR);
 	}
 	/**
 	 *	Method which inserts a new node given only a B-number.
@@ -30,11 +36,11 @@ public class BST{
 	}
 
 	/**
-	*	This inserts a given node into the tree.
-	*	It calls the internal insert method with the proper
-	* arguments.
-	*	@param newNode the node to insert.
-	**/
+	 *	This inserts a given node into the tree.
+	 *	It calls the internal insert method with the proper
+	 * arguments.
+	 *	@param newNode the node to insert.
+	 **/
 	public void insert(Node newNode){
 		this.insert(this.head, newNode);
 		Logger.writeMessage("Inserting node into BST \n" + newNode.toString(),
@@ -90,41 +96,45 @@ public class BST{
 	}
 
 	/**
-	*	Updates the relevant nodes with the fiven updateValue.
-	*	This calls the internal inOrderMap method, and if the node passes
-	*	its observer check predicate (filter) then gets its bNumber
-	* incremented. It also notifies any observers with the value to update.
-	*	@param updateValue the int value to increment bNumber by potentially.
-	*	@return void
-	**/
+	 *	Updates the relevant nodes with the given updateValue.
+	 *	This calls the internal inOrderMap method, and if the node passes
+	 *	its observer check predicate (filter) then gets its bNumber
+	 * incremented. It also notifies any observers with the value to update.
+	 *	@param updateValue the int value to increment bNumber by potentially.
+	 *	@return void
+	 **/
 	public void updateNodes(int updateValue){
 		this.inOrderMap(this.head, (node -> { 
 					if(this.max == node.bNumber){
-						node.bNumber += updateValue;
+						node.update(updateValue);
 						node.notifyObservers(updateValue);
+						this.max += updateValue;
 					}
-					node.bNumber += updateValue;
+					node.update(updateValue);
 					node.notifyObservers(updateValue);
-
 					})); 
 	}
 
 	/**
-	* Print out all the nodes of this tree in order. 
-	* Uses the internal inOrderMap method.
-	**/ 
+	 * Print out all the nodes of this tree in order. 
+	 * Uses the internal inOrderMap method.
+	 **/ 
 	public String printInOrder(){
-		this.inOrderMap(this.head, (a -> System.out.println(a.toString())));
-		return "";
+		List<Node> nodes = new ArrayList();
+		this.inOrderMap(this.head, (n -> nodes.add(n)));
+		return nodes.stream()
+			.map(node -> node.toString())
+			.collect(Collectors.joining("\n"));		
 	}
 	/**
 	 * Traverse the tree and savethe sum of all nodes bnumbers.
 	 * Uses the internal inOrderMap method.
+	 * @return a string representing the sum of all bnumbers in this tree.
 	 **/
-	public int printBSum(){
+	public String printBSum(){
 		this.sum = 0;
 		this.inOrderMap(this.head, (n -> this.sum += n.bNumber));
-		return this.sum;
+		return "The sum of all B-Numbers is: " +  this.sum + ".";
 	}
 
 	public String toString(){

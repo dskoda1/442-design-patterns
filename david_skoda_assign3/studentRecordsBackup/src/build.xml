@@ -65,9 +65,9 @@
 	
     </target>
 <target name="tarzip"> 
-  <tar destfile="${BUILD}/dist/david_skoda_assign2.tar.gz"
+  <tar destfile="${BUILD}/dist/david_skoda_assign3.tar.gz"
        compression="gzip">
-    <tarfileset dir="." prefix="david_skoda_assign2/studentRecordsBackup">
+    <tarfileset dir="." prefix="david_skoda_assign3/studentRecordsBackup">
       <include name="src/**/*.java"/>
       <include name="src/build.xml"/>
       <include name="README.txt"/>

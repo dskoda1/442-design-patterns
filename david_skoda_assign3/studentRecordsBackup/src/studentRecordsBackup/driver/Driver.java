@@ -12,26 +12,24 @@ public class Driver{
 	public static void main(String args[]) {
 		//Command line argument verification
 		if(args.length > 3){
-			throw new IllegalArgumentException("PrimeThreads requires three"
+			throw new IllegalArgumentException("StudentRecordsBackup requires three"
 					+	" arguments to be passed in at runtime.\n"
 					+ "More than three were passed into the execution of this program.\n"
 					+ "This could be a result of extra default args set in your ant buildfile.\n" 
 					+ "Ant usage: \n\t"
 					+ "ant -buildfile src/build.xml run -Darg0=<input file> "
-					+ "-Darg1=<num threads> -Darg2=<debug level>\n");
+					+ "-Darg1=<update value> -Darg2=<debug level>\n");
 		}
 		if(args.length < 3)
 		{
-			throw new IllegalArgumentException("PrimeThreads requires three"
+			throw new IllegalArgumentException("StudentRecordsBackup requires three"
 					+	" arguments to be passed in at runtime.\n"
 					+ "You have passed in less than three arguments. Please check your usage.\n"
 					+ "If you are passing three arguments and using ant, ensure that your buildfile "
 					+ "has 3 arguments set in the run command. Otherwise they will silently not be passed in.\n\n"
 					+ "Ant usage: \n\t"
 					+ "ant -buildfile src/build.xml run -Darg0=<input file> "
-					+ "-Darg1=<num threads> -Darg2=<debug level>\n\n"
-					+ "Usage: \n\t"
-					+ "java path/to/driver <arg1=Input file> <arg2=Num threads> <arg3=Debug level>\n\n");
+					+ "-Darg1=<update value> -Darg2=<debug level>\n\n");
 		}	
 
 		String fileName = args[0];
@@ -46,12 +44,6 @@ public class Driver{
 			throw new IllegalArgumentException("Argument 2 must be a string " +
 					"that can be parsed into an int, and not cause any integer overflow.");
 		}finally{
-			/*if(numThreads < 1 || numThreads > 5){
-				System.err.println("Number of threads argument passed not in valid range.");
-				throw new IllegalArgumentException("Argument 2 must be a string " +
-						"that can be parsed into an int, and between 1-5, inclusive.");
-			}	
-			*/
 		}
 		//Verify debug level argument
 		try{
@@ -78,15 +70,13 @@ public class Driver{
 		ArrayList<BST> trees = builder.buildTrees();
 		BST bst = trees.get(0); 
 		
-		for(BST tree : trees){
-			System.out.println(tree.printBSum());
-
-		}
 		//Update the nodes in the first tree now
 		bst.updateNodes(updateValue);
 		for(BST tree : trees){
-			System.out.println(tree.printBSum());
-
+			System.out.println("Tree");
+			Logger.writeMessage(tree.printBSum(), Logger.DebugLevel.SUM);
+			Logger.writeMessage(tree.printInOrder(), Logger.DebugLevel.PRINT);
+			
 		}
 
 	} // end main(...)

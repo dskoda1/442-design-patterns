@@ -58,7 +58,7 @@ public final class FileProcessor{
 	 * Reads a single line from the BufferedReader class member.
 	 * @return A line from the file, String
 	 */
-	public synchronized String readLineFromFile(){
+	public String readLineFromFile(){
 		String line = null;
 		try{
 			//Attempt to read a line, and close if no more lines
@@ -78,8 +78,7 @@ public final class FileProcessor{
 	/**
 	 * For debugging purposes
 	 */
-	@Override
-		public String toString(){
+	@Override public String toString(){
 			return "BufferedReader br: " + this.br.toString() +
 				"\nString fileName: " + this.fileName;
 

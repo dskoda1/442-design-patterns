@@ -15,8 +15,8 @@ public class Logger{
 
 	public static void setDebugValue (int levelIn) {
 		switch (levelIn) {
-			case 0: debugLevel = DebugLevel.INSERT; break;
-			case 1: debugLevel = DebugLevel.SUM; break;
+			case 0: debugLevel = DebugLevel.SUM; break;
+			case 1: debugLevel = DebugLevel.INSERT; break;
 			case 2: debugLevel = DebugLevel.UPDATE; break;
 			case 3: debugLevel = DebugLevel.PRINT; break;
 			case 4: debugLevel = DebugLevel.CONSTRUCTOR; break;
@@ -27,7 +27,6 @@ public class Logger{
 		debugLevel = levelIn;
 	}
 
-	// @return None
 	public static void writeMessage (String message,
 			DebugLevel levelIn ) {
 		if (levelIn == debugLevel)
