@@ -1,9 +1,6 @@
 package studentRecordsBackup.util;
 
 
-import studentRecordsBackup.util.OddEvenFilterI;
-import studentRecordsBackup.util.OddFilter;
-import studentRecordsBackup.util.EvenFilter;
 import studentRecordsBackup.bst.BST;
 import studentRecordsBackup.bst.Node;
 import java.util.ArrayList;
@@ -25,8 +22,13 @@ public class BSTBuilder{
 	 *	Builds three trees, with 2 as observers and one as subject.
 	 *	This method iterates through the file the BSTBuilder class was
 	 *	given to read, and creates 3 nodes for each B-Number. One as the
-	 *	subject, and two as observers. One observer gets an OddFilter,
-	 *	and the other gets an EvenFilter.
+	 *	subject, and 2 as observers. 
+	 *	The first observer gets a filter predicate that tests for odd 
+	 *  values, and the second gets one that tests for
+	 * 	even values. These are passed in as lambda functions, and act like
+	 *	functional interfaces under the hood. They can be used just like an
+	 * 	interface by calling their 'test' method with an int, and they return
+	 * 	a boolean.
 	 * @return an ArrayList of BST's.
 	 **/
 	public ArrayList<BST> buildTrees()
@@ -44,15 +46,18 @@ public class BSTBuilder{
 				//Parse the B-Number
 				int bNum = Integer.valueOf(line);
 
+				//Create the Nodes here.
 				Node ogNode = new Node(bNum);
-				//Node oddNode = new Node(bNum, (n -> (n % 2) == 1 ? true : false)); 		
-				//Node evenNode = new Node(bNum, (n -> (n % 2) == 0 ? true : false)); 		
 				Node oddNode = new Node(bNum);
-				ogNode.add(oddNode, new OddFilter());
-
 				Node evenNode = new Node(bNum);
-				ogNode.add(evenNode, new EvenFilter());
 
+				//Add the oddNode with a lambda filter predicate testing for odd values.
+				ogNode.add(oddNode, (n -> (n % 2) == 1 ? true : false));
+
+				//Add the evenNode with a lambda filter predicate testing for even values.
+				ogNode.add(evenNode, (n -> (n % 2) == 0 ? true : false));
+
+				//Insert the nodes into the appropriate trees here.
 				og.insert(ogNode);
 				odd.insert(oddNode);
 				even.insert(evenNode);

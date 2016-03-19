@@ -117,11 +117,20 @@ public class BST{
 
 	/**
 	 * Print out all the nodes of this tree in order. 
-	 * Uses the internal inOrderMap method.
+	 * Uses the internal inOrderMap method to create a list
+	 * of all nodes in the tree. Then creates a stream with said
+	 * list to put together all of the nodes values into a single 
+	 * string.
+	 * @return the string containing all of the nodes together.
 	 **/ 
 	public String printInOrder(){
 		List<Node> nodes = new ArrayList();
 		this.inOrderMap(this.head, (n -> nodes.add(n)));
+		//xyz.stream() returns a collection which we can then chain
+		//function calls onto, in order to refine the original collection
+		//down to what we want. This example only uses map which calls a
+		//function on each node in the stream, and returns the nodes toString
+		//value. We then join the stream back together with newline characters.
 		return nodes.stream()
 			.map(node -> node.toString())
 			.collect(Collectors.joining("\n"));		
