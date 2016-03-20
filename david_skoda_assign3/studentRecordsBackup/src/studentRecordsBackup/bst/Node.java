@@ -46,7 +46,6 @@ public class Node implements ObserverI, SubjectI{
    *	@param filterIn the filter to use as a key for the observer
    **/
   @Override public void add(ObserverI obsIn, OddEvenFilterI filterIn){
-    System.out.println(filterIn.hashCode());
     if(obsIn != null && filterIn != null){
       observers.put(filterIn, obsIn);
     }

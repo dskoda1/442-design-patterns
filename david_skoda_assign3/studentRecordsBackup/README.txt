@@ -2,13 +2,15 @@ CS542 Design Patterns
 Spring 2016
 PROJECT 3 README FILE
 
-Due Date: Monday, February 29, 2016
-Submission Date: 
+Due Date: Tuesday, March 22 2016
+Submission Date: Sunday, March 20 2016 
 Grace Period Used This Project: 0 Days
 Grace Period Remaining: 3 Days
 Author(s): David Skoda
 e-mail(s): dskoda1@binghamton.edu
 
+NOTE:
+This is the first version of the project, with the original design.
 
 PURPOSE:
 The purpose of this project is to understand and implement the Observer pattern
@@ -17,7 +19,7 @@ as the subject and two as observers, and so whenever the subject is updated, the
 corresponding observers are updated as well (based on a filter check).
 
 DATA STRUCTURE JUSTIFICATION:
-I used a HashMap inside the node class, with a Filter as key and an Observer as
+I used a HashMap inside the node class, with a FilterI as key and an Observer as
 the value. I decided on this data structure because I can iterate through the
 map, and check each filter individually, without needing to call the observer 
 method if the predicate does not pass. Also, if it does pass, the hash map provides
@@ -88,8 +90,9 @@ ant -buildfile src/build.xml run -Darg0=525847.txt -Darg1=2 -Darg2=1
 EXTRA CREDIT:
 N/A
 
-
 BIBLIOGRAPHY:
+https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
+http://www.oracle.com/technetwork/articles/java/ma14-java-se-8-streams-2177646.html
 
 ACKNOWLEDGEMENT:
 N/A

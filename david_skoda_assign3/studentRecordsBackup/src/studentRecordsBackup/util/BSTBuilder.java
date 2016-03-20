@@ -33,9 +33,9 @@ public class BSTBuilder{
   {
     //Create the array list, and the three trees.
     ArrayList<BST> trees = new ArrayList<BST>();
-    BST og = new BST();
-    BST odd = new BST();
-    BST even = new BST();
+    BST tree = new BST();
+    BST oddTree = new BST();
+    BST evenTree = new BST();
 
     String line;
     //Loop through the file here.
@@ -44,18 +44,16 @@ public class BSTBuilder{
         //Parse the B-Number
         int bNum = Integer.valueOf(line);
 
-        Node ogNode = new Node(bNum);
-        //Node oddNode = new Node(bNum, (n -> (n % 2) == 1 ? true : false)); 		
-        //Node evenNode = new Node(bNum, (n -> (n % 2) == 0 ? true : false)); 		
+        Node node = new Node(bNum);
         Node oddNode = new Node(bNum);
-        ogNode.add(oddNode, new OddFilter());
+        node.add(oddNode, new OddFilter());
 
         Node evenNode = new Node(bNum);
-        ogNode.add(evenNode, new EvenFilter());
+        node.add(evenNode, new EvenFilter());
 
-        og.insert(ogNode);
-        odd.insert(oddNode);
-        even.insert(evenNode);
+        tree.insert(node);
+        oddTree.insert(oddNode);
+        evenTree.insert(evenNode);
 
 
       }
@@ -68,9 +66,9 @@ public class BSTBuilder{
     }catch(Exception e){
       e.printStackTrace();
     }
-    trees.add(og);
-    trees.add(odd);
-    trees.add(even);
+    trees.add(tree);
+    trees.add(oddTree);
+    trees.add(evenTree);
 
     return trees;
   }
