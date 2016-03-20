@@ -66,7 +66,7 @@ public class BSTBuilder{
 
         //Add the oddNode with a lambda filter predicate testing for odd values.
         //ogNode.add(oddNode, this.FilterPredicates.get("Odd")); 
-        ogNode.add(oddNode,(n -> (n % 2) == 1 ? true : false)); 
+        ogNode.add(oddNode, (n -> (n % 2) == 1 ? true : false)); 
 
         //Add the evenNode with a lambda filter predicate testing for even values.
         ogNode.add(evenNode, this.FilterPredicates.get("Even"));
