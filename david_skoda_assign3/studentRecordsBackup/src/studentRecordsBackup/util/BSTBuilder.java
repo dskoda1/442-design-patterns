@@ -15,8 +15,6 @@ public class BSTBuilder{
   private FileProcessor fp;
   private HashMap<String, Predicate<Integer>> FilterPredicates;
 
-
-
   public BSTBuilder(String fileNameIn){
     this.fp = new FileProcessor(fileNameIn);
     Logger.writeMessage("Constructor for BSTBuilder Class called.",
@@ -26,6 +24,7 @@ public class BSTBuilder{
     {{
         put("Odd", (n -> (n % 2) == 1 ? true : false));
         put("Even", (n -> (n % 2) == 0 ? true : false));
+        put("Five", (n -> (n % 5) == 0 ? true : false));
     }};
   }
 
@@ -48,9 +47,9 @@ public class BSTBuilder{
   {
     //Create the array list, and the three trees.
     ArrayList<BST> trees = new ArrayList<BST>();
-    BST og = new BST();
-    BST odd = new BST();
-    BST even = new BST();
+    BST tree = new BST();
+    BST oddTree = new BST();
+    BST evenTree = new BST();
 
     String line;
     //Loop through the file here.
@@ -60,21 +59,16 @@ public class BSTBuilder{
         int bNum = Integer.valueOf(line);
 
         //Create the Nodes here.
-        Node ogNode = new Node(bNum);
-        Node oddNode = new Node(bNum);
-        Node evenNode = new Node(bNum);
-
-        //Add the oddNode with a lambda filter predicate testing for odd values.
-        //ogNode.add(oddNode, this.FilterPredicates.get("Odd")); 
-        ogNode.add(oddNode, (n -> (n % 2) == 1 ? true : false)); 
-
-        //Add the evenNode with a lambda filter predicate testing for even values.
-        ogNode.add(evenNode, this.FilterPredicates.get("Even"));
+        Node node = new Node(bNum);
+        Node oddNode = new Node(bNum, this.FilterPredicates.get("Odd"));
+        Node evenNode = new Node(bNum, this.FilterPredicates.get("Even"));
+        node.add(oddNode);
+        node.add(evenNode);
 
         //Insert the nodes into the appropriate trees here.
-        og.insert(ogNode);
-        odd.insert(oddNode);
-        even.insert(evenNode);
+        tree.insert(node);
+        oddTree.insert(oddNode);
+        evenTree.insert(evenNode);
 
 
       }
@@ -87,9 +81,9 @@ public class BSTBuilder{
     }catch(Exception e){
       e.printStackTrace();
     }
-    trees.add(og);
-    trees.add(odd);
-    trees.add(even);
+    trees.add(tree);
+    trees.add(oddTree);
+    trees.add(evenTree);
 
     return trees;
   }

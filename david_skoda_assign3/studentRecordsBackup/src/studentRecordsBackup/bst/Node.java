@@ -12,15 +12,17 @@ public class Node implements ObserverI, SubjectI{
   protected int bNumber;
   protected Node left;
   protected Node right;
-  //Keep a hash map of predicate/observer pairs
-  protected HashMap<Predicate<Integer>, ObserverI> observers;
+  //Keep a hash set of observers
+  protected HashSet<ObserverI> observers;
+  //Keep the filter as a data member
+  protected Predicate<Integer> filter;
 
   public Node(){
     super();
     this.bNumber = 0;
     this.left = null;
     this.right = null;
-    this.observers = new HashMap();
+    this.observers = new HashSet();
     Logger.writeMessage("Constructor for Node Class called. ",
         Logger.DebugLevel.CONSTRUCTOR); 
   }
@@ -29,21 +31,27 @@ public class Node implements ObserverI, SubjectI{
     this.bNumber = bNumIn;
     this.left = null;
     this.right = null;
-    this.observers = new HashMap(); 
+    this.observers = new HashSet(); 
+    Logger.writeMessage("Constructor for Node Class called. ",
+        Logger.DebugLevel.CONSTRUCTOR); 
+  }
+  public Node(int bNumIn, Predicate<Integer> filterIn){
+    super();
+    this.bNumber = bNumIn;
+    this.left = null;
+    this.right = null;
+    this.filter = filterIn;
+    this.observers = new HashSet(); 
     Logger.writeMessage("Constructor for Node Class called. ",
         Logger.DebugLevel.CONSTRUCTOR); 
   }
   /**
-   *	Add an observer and its corresponding filter predicate into 
-   *	this nodes observers map
+   *	Add an observer this nodes observers map
    *	@param obsIn the observer to save
-   *	@param filterIn the filter to use as a key for the observer, a
-   *	predicate function which can be tested with .test and takes an int
    **/
-  @Override public void add(ObserverI obsIn, Predicate<Integer> filterIn){
-    if(obsIn != null && filterIn != null){
-      System.out.println(filterIn.hashCode());
-      observers.put(filterIn, obsIn);
+  @Override public void add(ObserverI obsIn){
+    if(obsIn != null){ 
+      observers.add(obsIn);
     }
   }
   /**
@@ -64,16 +72,23 @@ public class Node implements ObserverI, SubjectI{
    **/
   @Override public void notifyObservers(int updateValue){
     //Get the key set
-    this.observers.keySet()
+    this.observers
       //Transform it into a stream
       .stream()
       //Filter them based on the test
-      .filter(pred -> pred.test(updateValue))
-      //Get the corresponding observer 
-      .map(pred -> this.observers.get(pred))
+      .filter(obs -> obs.test(updateValue))
       //Call the update method onto each observer
       .forEach(obs -> obs.update(updateValue));
   }
+  /**
+  * Run this nodes filter predicate with the given updateValue.
+  * @param updateValue the int value to test against
+  * @return a boolean returned from the predicate.
+  **/
+  @Override public boolean test(int updateValue){
+    return this.filter.test(updateValue);
+  }
+
 
   /**
    *	Update this nodes bNumber.
@@ -100,14 +115,6 @@ public class Node implements ObserverI, SubjectI{
     }	
   }
 
-
-  @Override public boolean equals(Object obj){
-    if(obj instanceof Node){
-      return ( ((Node) obj).bNumber == this.bNumber);
-    }else{
-      return false;
-    }
-  }
 
   public void setBnumber(int bNumIn){
     this.bNumber = bNumIn;
