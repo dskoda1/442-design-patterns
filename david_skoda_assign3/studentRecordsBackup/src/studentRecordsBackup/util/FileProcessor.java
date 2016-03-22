@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-public final class FileProcessor{
+public class FileProcessor{ 
 
   //Private members.
   private String fileName;

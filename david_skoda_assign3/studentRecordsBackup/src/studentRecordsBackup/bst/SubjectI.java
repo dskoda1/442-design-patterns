@@ -1,5 +1,4 @@
 package studentRecordsBackup.bst;
-import studentRecordsBackup.util.OddEvenFilterI;
 import java.util.function.Predicate;
 
 public interface SubjectI{

@@ -69,14 +69,24 @@ public class Driver{
 
     ArrayList<BST> trees = builder.buildTrees();
     BST bst = trees.get(0); 
-
-    //Update the nodes in the first tree now
-    bst.updateNodes(updateValue);
+    int i = 1;
+    System.out.println("Before update");
     for(BST tree : trees){
-      System.out.println("Tree");
+      System.out.println("Tree " + i);
       Logger.writeMessage(tree.printBSum(), Logger.DebugLevel.SUM);
       Logger.writeMessage(tree.printInOrder(), Logger.DebugLevel.PRINT);
-
+      ++i;
+    }
+    
+    //Update the nodes in the first tree now
+    bst.updateNodes(updateValue);
+    i = 1;
+    System.out.println("After Update");
+    for(BST tree : trees){
+      System.out.println("Tree " + i);
+      Logger.writeMessage(tree.printBSum(), Logger.DebugLevel.SUM);
+      Logger.writeMessage(tree.printInOrder(), Logger.DebugLevel.PRINT);
+      ++i;
     }
 
   } // end main(...)
