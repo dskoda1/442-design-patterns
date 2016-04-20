@@ -1,0 +1,17 @@
+#cd into the wordCount directory
+alias assign4="cd Documents/442/wordCount/hagadorn_skoda_assign_4/wordCount"
+
+#compile the project
+alias build="ant -buildfile ~/Documents/442/wordCount/hagadorn_skoda_assign_4/wordCount/src/build.xml all"
+
+#helper function for running
+function __Run(){
+ant run -buildfile ~/Documents/442/wordCount/hagadorn_skoda_assign_4/wordCount/src/build.xml -Darg0=$1 -Darg1=$2 -Darg2=$3 -Darg3=$4
+}
+
+#run the project, needs to be passed the 4 args
+alias run="__Run"
+
+#git helpers
+alias add="git add -A"
+alias push="git push origin master"
