@@ -1,4 +1,4 @@
-<project name="genericCheckpointing" default="compile_all" basedir="..">
+<project name="genericCheckpointing" default="compile_all" basedir="">
 
   <property name="BUILD.compiler"       value="modern"/>
   <property name="src"                  value="src"/>
@@ -59,9 +59,9 @@
 <target name="run" depends="jar">
         <java jar="${BUILD}/jar/genericCheckpointing.jar"  fork="true">
         <arg value="${arg0}"/>
-      <arg value="${arg1}"/>
+      <!-- <arg value="${arg1}"/>
       <arg value="${arg2}"/>
-        <arg value="${arg3}"/>
+        <arg value="${arg3}"/> -->
         </java>
   
     </target>
