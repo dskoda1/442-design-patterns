@@ -9,6 +9,7 @@ import genericCheckpointing.server.StoreRestoreI;
 import genericCheckpointing.util.FileProcessor;
 import genericCheckpointing.util.MyAllTypesFirst;
 import genericCheckpointing.util.MyAllTypesSecond;
+import genericCheckpointing.util.RandomGen;
 
 import genericCheckpointing.xmlStoreRestore.StoreRestoreHandler;
 
@@ -18,7 +19,10 @@ public class Driver {
 
 	public static void main(String[] args) {
 
-		validateArgLength(args.length, 1);
+		validateArgLength(args.length, 2);
+		int NUM_OF_OBJECTS = validateNumParam(args[1], 0, Integer.MAX_VALUE,
+				"Exception caught parsing argument 2: NUM_OF_OBJECTS",
+				"Argument 2 must be a parseabble string between 0 and Int.max");
 
 		// FIXME: read the value of checkpointFile from the command line
 		ProxyCreator pc = new ProxyCreator();
@@ -26,34 +30,26 @@ public class Driver {
 		// create an instance of StoreRestoreHandler (which implements
 		// the InvocationHandler
 		StoreRestoreHandler srh = new StoreRestoreHandler();
-		srh.openFile(new FileProcessor(args[0]));
+		//srh.openFile(new FileProcessor(args[0]));
 
 		// create a proxy
 		StoreRestoreI cpointRef = (StoreRestoreI) pc.createProxy(new Class[] {
 				StoreI.class, RestoreI.class }, srh);
-		// new StoreRestoreHandler() );
-
-		// FIXME: invoke a method on the handler instance to set the file name
-		// for checkpointFile and open the file
-		// Done above
 
 		MyAllTypesFirst myFirst;
 		MyAllTypesSecond mySecond;
-
+		RandomGen rg = new RandomGen();
 		 //create a vector to store the objects being serialized
-//		 for (int i=0; i<NUM_OF_OBJECTS; i++) {
-//		 // FIXME: create these object instances correctly.
-//		 myFirst = new MyAllTypesFirst(...);
-//		 mySecond = new MyAllTypesSecond(..);
-//		
-//		 // FIXME: store myFirst and mySecond in the vector
-//		 ((StoreI) cpointRef).writeObj(myFirst, "XML");
-//		 ((StoreI) cpointRef).writeObj(mySecond, "XML");
-//		
-//		 }
+		 for (int i=0; i<NUM_OF_OBJECTS; i++) {
+		 // FIXME: create these object instances correctly.
+		 myFirst = (new MyAllTypesFirst()).random(rg);
+		 mySecond = (new MyAllTypesSecond()).random(rg);
+		 ((StoreI) cpointRef).writeObj(myFirst, "XML");
+		 ((StoreI) cpointRef).writeObj(mySecond, "XML");
+		
+		 }
 
 		// SerializableObject myRecordRet;
-
 		// create a vector to store the returned ojects
 		// for (int j=0; j<2*NUM_OF_OBJECTS; j++) {
 		//
@@ -94,6 +90,25 @@ public class Driver {
 			// +
 			// "-Darg1=<output file> -Darg2=<Num Iterations> -Darg3=<Search String>\n");
 		}
+	}
+	
+	private static int validateNumParam(String param, int min, int max,
+			String exCaught, String exMessage) throws IllegalArgumentException {
+		int retVal = 0;
+		try {
+			retVal = Integer.valueOf(param);
+		} catch (NumberFormatException nfe) {
+			System.err.println(exCaught);
+			System.err.println("Stack Trace: ");
+			nfe.printStackTrace();
+			throw new IllegalArgumentException(exMessage);
+		} finally {
+			if (retVal < min || retVal > max) {
+				System.err.println("Argument passed not in valid range.");
+				throw new IllegalArgumentException(exMessage);
+			}
+		}
+		return retVal;
 	}
 
 }

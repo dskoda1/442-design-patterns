@@ -11,6 +11,17 @@ public class MyAllTypesSecond extends SerializableObject {
 	public MyAllTypesSecond(){
 	}
 	
+	
+	public MyAllTypesSecond random(RandomGen rg){
+			//Now assign all of these values
+			myIntS = rg.randomInt();
+			myStringS = rg.randomString();
+			myFloatS = rg.randomFloat();
+			myShortS = rg.randomShort();
+			myCharS = rg.randomChar();
+			return this;
+	}
+	
 	/**
 	 * My IntS
 	 */
@@ -64,5 +75,16 @@ public class MyAllTypesSecond extends SerializableObject {
 	
 	public void set_myCharS(char myCharSIn){
 		myCharS = myCharSIn;
+	}
+	
+	@Override
+	public String toString(){
+		
+		return "MyAllTypesSecond: " + "\n" +
+				"myIntS: " + myIntS +  "\n" +
+				"myStringS: " + myStringS +  "\n" +
+				"myFloatS: " + myFloatS +  "\n" +
+				"myShortS: " + myShortS +  "\n" +
+				"myCharS: " + myCharS +  "\n";
 	}
 }
