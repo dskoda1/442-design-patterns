@@ -28,55 +28,55 @@ public class MyAllTypesFirst extends SerializableObject {
 	/**
 	 * My Int
 	 */
-	public int getMyInt(){
+	public int get_myInt(){
 		return myInt;
 	}
 	
-	public void setMyInt(int myIntIn){
+	public void set_myInt(int myIntIn){
 		myInt = myIntIn;
 	}
 	
 	/**
 	 * My String
 	 */
-	public String getMyString(){
+	public String get_myString(){
 		return myString;
 	}
 	
-	public void setMyString(String myStringIn){
+	public void set_myString(String myStringIn){
 		myString = myStringIn;
 	}
 	
 	/**
 	 * My Double
 	 */
-	public double getMyDouble(){
+	public double get_myDouble(){
 		return myDouble;
 	}
 	
-	public void setMyDouble(double myDoubleIn){
+	public void set_myDouble(double myDoubleIn){
 		myDouble = myDoubleIn;
 	}
 	
 	/**
 	 * My Long
 	 */
-	public long getMyLong(){
+	public long get_myLong(){
 		return myLong;
 	}
 	
-	public void setMyLong(long myLongIn){
+	public void set_myLong(long myLongIn){
 		myLong = myLongIn;
 	}
 	
 	/**
 	 * My Char
 	 */
-	public char getMyChar(){
+	public char get_myChar(){
 		return myChar;
 	}
 	
-	public void setMyChar(char myCharIn){
+	public void set_myChar(char myCharIn){
 		myChar = myCharIn;
 	}
 	

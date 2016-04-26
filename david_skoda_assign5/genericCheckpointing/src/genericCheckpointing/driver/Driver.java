@@ -26,28 +26,25 @@ public class Driver {
 
 		// FIXME: read the value of checkpointFile from the command line
 		ProxyCreator pc = new ProxyCreator();
-
-		// create an instance of StoreRestoreHandler (which implements
-		// the InvocationHandler
-		StoreRestoreHandler srh = new StoreRestoreHandler();
-		//srh.openFile(new FileProcessor(args[0]));
+		StoreRestoreHandler srh = new StoreRestoreHandler(args[0]);
 
 		// create a proxy
 		StoreRestoreI cpointRef = (StoreRestoreI) pc.createProxy(new Class[] {
 				StoreI.class, RestoreI.class }, srh);
-
 		MyAllTypesFirst myFirst;
 		MyAllTypesSecond mySecond;
 		RandomGen rg = new RandomGen();
-		 //create a vector to store the objects being serialized
-		 for (int i=0; i<NUM_OF_OBJECTS; i++) {
-		 // FIXME: create these object instances correctly.
-		 myFirst = (new MyAllTypesFirst()).random(rg);
-		 mySecond = (new MyAllTypesSecond()).random(rg);
-		 ((StoreI) cpointRef).writeObj(myFirst, "XML");
-		 ((StoreI) cpointRef).writeObj(mySecond, "XML");
+		// create a vector to store the objects being serialized
+		for (int i = 0; i < NUM_OF_OBJECTS; i++) {
+			// FIXME: create these object instances correctly.
+			myFirst = (new MyAllTypesFirst()).random(rg);
+			mySecond = (new MyAllTypesSecond()).random(rg);
+			((StoreI) cpointRef).writeObj(myFirst, "XML");
+			((StoreI) cpointRef).writeObj(mySecond, "XML");
+
+		}
 		
-		 }
+		srh.closeFile();
 
 		// SerializableObject myRecordRet;
 		// create a vector to store the returned ojects
@@ -91,7 +88,7 @@ public class Driver {
 			// "-Darg1=<output file> -Darg2=<Num Iterations> -Darg3=<Search String>\n");
 		}
 	}
-	
+
 	private static int validateNumParam(String param, int min, int max,
 			String exCaught, String exMessage) throws IllegalArgumentException {
 		int retVal = 0;

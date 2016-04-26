@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 public final class FileProcessor implements FileProcessorI{
 
   //Private members.
-  private String fileName;
+  public String fileName;
   private BufferedReader br;
   private BufferedWriter bw;
 
@@ -63,7 +63,6 @@ public final class FileProcessor implements FileProcessorI{
 			e.printStackTrace();
 			System.exit(1);
 		}
-
   }
   /**
    * Reads a single line from the BufferedReader class member.
@@ -89,12 +88,12 @@ public final class FileProcessor implements FileProcessorI{
   /**
    * Write a single line to the BufferedWriter class member.
    */
-  public void writeLine(String line){
+  public void writeLine(String line, String fileNameIn){
 	  try {
 		bw.write(line);
 		bw.newLine();
 	} catch (IOException e) {
-		System.out.println("Error writing line to file " + fileName);
+		System.out.println("Error writing line to file " + fileNameIn);
 		e.printStackTrace();
 		System.exit(1);
 	}

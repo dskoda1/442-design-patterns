@@ -1,0 +1,180 @@
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">9781</myInt>
+		<name xsi:type="xsd:java.lang.String">3pd3fjsge0rjiovcg8ji6nnecm</myString>
+		<name xsi:type="xsd:double">0.7806254799064264</myDouble>
+		<name xsi:type="xsd:long">-8874781382600832074</myLong>
+		<name xsi:type="xsd:char">r</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">9665</myIntS>
+		<name xsi:type="xsd:java.lang.String">fb7edj5emukoo7a36numiscqrr</myStringS>
+		<name xsi:type="xsd:float">0.7893516</myFloatS>
+		<name xsi:type="xsd:short">9830</myShortS>
+		<name xsi:type="xsd:char">:</myCharS>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">8756</myInt>
+		<name xsi:type="xsd:java.lang.String">sp6e2tcps5d7lukntn4sacpmmd</myString>
+		<name xsi:type="xsd:double">0.6626379007604328</myDouble>
+		<name xsi:type="xsd:long">-2499353652403278311</myLong>
+		<name xsi:type="xsd:char">E</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">9172</myIntS>
+		<name xsi:type="xsd:java.lang.String">h3r74d4qkb9vsmdh0234qcrvt2</myStringS>
+		<name xsi:type="xsd:float">0.70471174</myFloatS>
+		<name xsi:type="xsd:short">27513</myShortS>
+		<name xsi:type="xsd:char">T</myCharS>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">7558</myInt>
+		<name xsi:type="xsd:java.lang.String">aiaf90da4caoq4qprbl73t0mca</myString>
+		<name xsi:type="xsd:double">0.5628937258674999</myDouble>
+		<name xsi:type="xsd:long">-9170048239627884197</myLong>
+		<name xsi:type="xsd:char">a</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">3112</myIntS>
+		<name xsi:type="xsd:java.lang.String">4e5a09s4mgccchhbt67llpdcsp</myStringS>
+		<name xsi:type="xsd:float">0.47567612</myFloatS>
+		<name xsi:type="xsd:short">2651</myShortS>
+		<name xsi:type="xsd:char">q</myCharS>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">2349</myInt>
+		<name xsi:type="xsd:java.lang.String">6qj0bekr5krl6gh9n8il53c9oi</myString>
+		<name xsi:type="xsd:double">0.16820812425058151</myDouble>
+		<name xsi:type="xsd:long">2597500193353163313</myLong>
+		<name xsi:type="xsd:char">]</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">5407</myIntS>
+		<name xsi:type="xsd:java.lang.String">a3nr05aqepnr602pfj5nbf03nf</myStringS>
+		<name xsi:type="xsd:float">0.14734429</myFloatS>
+		<name xsi:type="xsd:short">10827</myShortS>
+		<name xsi:type="xsd:char">T</myCharS>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">9909</myInt>
+		<name xsi:type="xsd:java.lang.String">krvs8nbet89sg535d5tl7j8s53</myString>
+		<name xsi:type="xsd:double">0.11755276098764877</myDouble>
+		<name xsi:type="xsd:long">-1263912726274683695</myLong>
+		<name xsi:type="xsd:char">}</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">3725</myIntS>
+		<name xsi:type="xsd:java.lang.String">k0mcmd9ejl8pir1uk1ilrst1t5</myStringS>
+		<name xsi:type="xsd:float">0.38011575</myFloatS>
+		<name xsi:type="xsd:short">14888</myShortS>
+		<name xsi:type="xsd:char">h</myCharS>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">4389</myInt>
+		<name xsi:type="xsd:java.lang.String">4jh7bptd8ag484bse4njnmgcs2</myString>
+		<name xsi:type="xsd:double">0.2992097047809209</myDouble>
+		<name xsi:type="xsd:long">-891070962453978918</myLong>
+		<name xsi:type="xsd:char">C</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">8010</myIntS>
+		<name xsi:type="xsd:java.lang.String">3afe5onc6b1gm3sa55u6upjc7o</myStringS>
+		<name xsi:type="xsd:float">0.20528328</myFloatS>
+		<name xsi:type="xsd:short">13032</myShortS>
+		<name xsi:type="xsd:char">_</myCharS>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">7667</myInt>
+		<name xsi:type="xsd:java.lang.String">s9pehtp1q2ehrqqh68ijchkeph</myString>
+		<name xsi:type="xsd:double">0.30069047969901475</myDouble>
+		<name xsi:type="xsd:long">7735347910054380057</myLong>
+		<name xsi:type="xsd:char">:</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">8480</myIntS>
+		<name xsi:type="xsd:java.lang.String">iler4feh72shbbh2n8n64s6317</myStringS>
+		<name xsi:type="xsd:float">0.97604567</myFloatS>
+		<name xsi:type="xsd:short">30712</myShortS>
+		<name xsi:type="xsd:char">I</myCharS>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">1445</myInt>
+		<name xsi:type="xsd:java.lang.String">husdhr2id6k4oc7vrrf0edepqr</myString>
+		<name xsi:type="xsd:double">0.15008859671918096</myDouble>
+		<name xsi:type="xsd:long">1305260979216206868</myLong>
+		<name xsi:type="xsd:char">{</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">2599</myIntS>
+		<name xsi:type="xsd:java.lang.String">i1rbt1h4n81v609vb2mj1gr37h</myStringS>
+		<name xsi:type="xsd:float">0.72588766</myFloatS>
+		<name xsi:type="xsd:short">11182</myShortS>
+		<name xsi:type="xsd:char">h</myCharS>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">4734</myInt>
+		<name xsi:type="xsd:java.lang.String">suj4che18nt5g1ip2ps62ko2b5</myString>
+		<name xsi:type="xsd:double">0.17918247727899073</myDouble>
+		<name xsi:type="xsd:long">3654676971152532426</myLong>
+		<name xsi:type="xsd:char">n</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">9219</myIntS>
+		<name xsi:type="xsd:java.lang.String">d5sm4tvm3mv9bdpn65dtvkulr2</myStringS>
+		<name xsi:type="xsd:float">0.5125987</myFloatS>
+		<name xsi:type="xsd:short">27625</myShortS>
+		<name xsi:type="xsd:char">3</myCharS>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<name xsi:type="xsd:int">768</myInt>
+		<name xsi:type="xsd:java.lang.String">eha99s6u2hhqle03pn9qo81rm8</myString>
+		<name xsi:type="xsd:double">0.9701274464805264</myDouble>
+		<name xsi:type="xsd:long">-3317760278389058492</myLong>
+		<name xsi:type="xsd:char">6</myChar>
+	</complexType>
+</DPSerialization>
+<DPSerialization>
+	<complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<name xsi:type="xsd:int">3114</myIntS>
+		<name xsi:type="xsd:java.lang.String">n2v31asvi113sb9248fsi2c7ut</myStringS>
+		<name xsi:type="xsd:float">0.9841876</myFloatS>
+		<name xsi:type="xsd:short">23743</myShortS>
+		<name xsi:type="xsd:char">2</myCharS>
+	</complexType>
+</DPSerialization>
