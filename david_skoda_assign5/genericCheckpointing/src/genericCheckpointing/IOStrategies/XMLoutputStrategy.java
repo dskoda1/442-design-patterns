@@ -1,5 +1,4 @@
-package genericCheckpointing.outputStrategies;
-
+package genericCheckpointing.IOStrategies;
 import genericCheckpointing.util.SerializableObject;
 import genericCheckpointing.util.Duo;
 import java.lang.reflect.Method;
@@ -7,7 +6,6 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class XMLoutputStrategy implements OutputStrategyI {
 
@@ -62,6 +60,6 @@ public class XMLoutputStrategy implements OutputStrategyI {
 	
 	private String writeDataMember(String name, String type, String value){
 		
-		return "\t\t<"+"name"+" xsi:type=\"xsd:"+type+"\">"+value+"</"+name+">\n";
+		return "\t\t<"+name+" xsi:type=\"xsd:"+type+"\">"+value+"</"+name+">\n";
 	}
 }

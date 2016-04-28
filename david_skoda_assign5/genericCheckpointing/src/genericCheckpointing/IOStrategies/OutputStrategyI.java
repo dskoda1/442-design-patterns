@@ -1,4 +1,4 @@
-package genericCheckpointing.outputStrategies;
+package genericCheckpointing.IOStrategies;
 
 import genericCheckpointing.util.SerializableObject;
 import java.util.List;
@@ -8,10 +8,8 @@ import genericCheckpointing.util.Duo;
 
 
 public interface OutputStrategyI {
-	
 	public String writeOpeningObjectTags(String fqn);
 	public String writeClosingObjectTags();
 	public String writeDataMembers(SerializableObject so,
 			List<Duo<Field, Method>> fieldData);
-
 }
