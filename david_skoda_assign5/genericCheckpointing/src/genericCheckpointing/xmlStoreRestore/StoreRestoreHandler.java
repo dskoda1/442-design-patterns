@@ -30,12 +30,17 @@ public class StoreRestoreHandler implements InvocationHandler {
 	 * @param fileNameIn
 	 *            to create a fileprocessor for.
 	 */
-	public StoreRestoreHandler(String fileNameIn) {
+	public StoreRestoreHandler() {
 		super();
-		fileName = fileNameIn;
-		fpi = new FileProcessor(fileNameIn);
 	}
-
+	
+	public void openFileForReading(String fileName){
+		fpi = new FileProcessor(fileName);
+	}
+	
+	public void openFileForWriting(String fileName){
+		fpi = new FileProcessor(fileName, true);
+	}
 	/**
 	 * Close the file processor.
 	 */
@@ -77,7 +82,7 @@ public class StoreRestoreHandler implements InvocationHandler {
 			// Now generate the output string from the object
 			String out = generateOutputString((SerializableObject) args[0]);
 			// Now write out to file.
-			fpi.writeLine(out, fileName);
+			fpi.writeLine(out);
 		} else {
 			// Create the appropriate outputStrategy and save it as an instance
 			createInputStrategy(args[0].toString());

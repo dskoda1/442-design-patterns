@@ -15,6 +15,7 @@ import genericCheckpointing.util.RandomGen;
 import genericCheckpointing.xmlStoreRestore.StoreRestoreHandler;
 
 import java.util.Vector;
+
 // import the other types used in this file
 
 public class Driver {
@@ -26,50 +27,60 @@ public class Driver {
 		int NUM_OF_OBJECTS = validateNumParam(args[1], 0, Integer.MAX_VALUE,
 				"Exception caught parsing argument 2: NUM_OF_OBJECTS",
 				"Argument 2 must be a parseabble string between 0 and Int.max");
-		
-		// FIXME: read the value of checkpointFile from the command line
+
 		ProxyCreator pc = new ProxyCreator();
-		StoreRestoreHandler srh = new StoreRestoreHandler(args[2]);
+		StoreRestoreHandler srh = new StoreRestoreHandler();
 		// create a proxy
 		StoreRestoreI cpointRef = (StoreRestoreI) pc.createProxy(new Class[] {
 				StoreI.class, RestoreI.class }, srh);
-		
-		//Create the objects needed
-		MyAllTypesFirst myFirst;
-		MyAllTypesSecond mySecond;
-		RandomGen rg = new RandomGen();
-		
-		//time the deserialization
-//		System.out.println("Serializing..");
-//		long startTime = System.currentTimeMillis();
-//		int j = 10;
-//		// create a vector to store the objects being serialized
-//		for (int i = 0; i < NUM_OF_OBJECTS; i++) {
-//			// FIXME: create these object instances correctly.
-//			myFirst = (new MyAllTypesFirst()).random(rg);
-//			mySecond = (new MyAllTypesSecond()).random(rg);
-//			((StoreI) cpointRef).writeObj(myFirst, "XML");
-//			((StoreI) cpointRef).writeObj(mySecond, "XML");
-//			if(i % (NUM_OF_OBJECTS / 10) == 0 ){
-//				System.out.println("\t" + j + "%");
-//				j += 10;
-//			}
-//		}
-//		long finishTime = System.currentTimeMillis();
-//		long totalTime = (finishTime - startTime) / NUM_OF_OBJECTS;
-//		System.out
-//				.println("The total time it took to serialize "+NUM_OF_OBJECTS+
-//						" randomized objects is: "
-//						+ totalTime + " ms.");
-//		srh.closeFile();
-//
-		Vector<SerializableObject> objs = new Vector<>();
-//		// create a vector to store the returned ojects
-		for (int j=0; j<2*NUM_OF_OBJECTS; j++) {
-			objs.add(((RestoreI) cpointRef).readObj("XML"));
-			System.out.println(objs.get(j));
-		}
 
+		
+
+		//First create random objects and then serialize them
+		if(mode.equalsIgnoreCase("serdeser"))
+		{	//Create the objects needed
+			
+			MyAllTypesFirst myFirst;
+			MyAllTypesSecond mySecond;
+			RandomGen rg = new RandomGen();
+			srh.openFileForWriting(args[2]);
+			//time the deserialization
+			System.out.println("Serializing..");
+			long startTime = System.currentTimeMillis();
+			int j = 10;
+			// create a vector to store the objects being serialized
+			for (int i = 0; i < NUM_OF_OBJECTS; i++) {
+				// FIXME: create these object instances correctly.
+				myFirst = (new MyAllTypesFirst()).random(rg);
+				mySecond = (new MyAllTypesSecond()).random(rg);
+				((StoreI) cpointRef).writeObj(myFirst, "XML");
+				((StoreI) cpointRef).writeObj(mySecond, "XML");
+				if(i % (NUM_OF_OBJECTS / 10) == 0 ){
+					System.out.println("\t" + j + "%");
+					j += 10;
+				}
+			}
+			long finishTime = System.currentTimeMillis();
+			long totalTime = (finishTime - startTime) / NUM_OF_OBJECTS;
+			System.out
+			.println("The total time it took to serialize "+NUM_OF_OBJECTS+
+					" randomized objects is: "
+					+ totalTime + " ms.");
+			srh.closeFile();
+		}else if(mode.equalsIgnoreCase("deser")){
+			Vector<SerializableObject> objs = new Vector<>();
+			//		// create a vector to store the returned ojects
+			srh.openFileForReading(args[2]);
+			for (int j=0; j<2*NUM_OF_OBJECTS; j++) {
+				objs.add(((RestoreI) cpointRef).readObj("XML"));
+				System.out.println(objs.get(j));
+			}
+			srh.closeFile();
+		}else{
+			System.err.println("Unrecognized option for argument 1: Mode.\n"
+					+ "Options are either : 'serdeser', or 'deser'.");
+			System.exit(1);
+		}
 		// FIXME: invoke a method on the handler to close the file (if it hasn't
 		// already been closed
 

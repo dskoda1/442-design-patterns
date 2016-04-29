@@ -91,4 +91,14 @@ public class MyAllTypesFirst extends SerializableObject {
 				"myChar: " + myChar +  "\n";
 	}
 	
+	@Override
+	public boolean equals(Object obj){
+		MyAllTypesFirst m2 = (MyAllTypesFirst) obj;
+		
+		
+		
+		
+		return false;
+	}
+	
 }

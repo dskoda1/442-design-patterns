@@ -38,9 +38,9 @@ public final class FileProcessor implements FileProcessorI{
    * was borrowed from http://www.programcreek.com/2011/03/java-read-
    * a-file-line-by-line-code-example/
    */
-  public FileProcessor(String fileName) {
+  public FileProcessor(String fileNameIn) {
     super();
-    this.fileName = fileName;
+    fileName = fileNameIn;
     //Construct the infrastructure to read the file
     try{
       FileInputStream fis = new FileInputStream(fileName);
@@ -48,18 +48,25 @@ public final class FileProcessor implements FileProcessorI{
       this.br = new BufferedReader(new InputStreamReader(fis));
     }catch(FileNotFoundException fnfe){
       fnfe.printStackTrace();
-      System.out.println("File Not Found Exception: "
+      System.err.println("File Not Found Exception: "
           + fnfe.getCause());
-      System.out.println("File name of: " + fileName +
+      System.err.println("File name of: " + fileName +
           " was unable to be found/opened. Please check your filename.");
       System.exit(1);
     }
   }
-  public FileProcessor(String fileName, boolean forOutput){
+  public FileProcessor(String fileNameIn, boolean forOutput){
+	  super();
 		try {
-			bw = new BufferedWriter(new FileWriter(fileName, false));
+			bw = new BufferedWriter(new FileWriter(fileNameIn, false));
+			fileName = fileNameIn;
 		} catch (IOException e) {
-			System.out.println("Output file titled '" + fileName + "' unable to be opened for write.");
+			System.err.println("Output file titled '" + fileName + "' unable to be opened for write.");
+			e.printStackTrace();
+			System.exit(1);
+		}catch(Exception e){
+			System.err.println("Exception caught opening file for output: \n"
+					+ e.getMessage() + "\n" + e.getCause());
 			e.printStackTrace();
 			System.exit(1);
 		}
@@ -79,7 +86,7 @@ public final class FileProcessor implements FileProcessorI{
       }
     }catch(IOException io){
       io.printStackTrace();
-      System.out.println("IOException raised when reading a line "
+      System.err.println("IOException raised when reading a line "
           + io.getCause());
     }
     return line;
@@ -88,12 +95,12 @@ public final class FileProcessor implements FileProcessorI{
   /**
    * Write a single line to the BufferedWriter class member.
    */
-  public void writeLine(String line, String fileNameIn){
+  public void writeLine(String line){
 	  try {
 		bw.write(line);
 		bw.newLine();
 	} catch (IOException e) {
-		System.out.println("Error writing line to file " + fileNameIn);
+		System.err.println("Error writing line to file " + fileName);
 		e.printStackTrace();
 		System.exit(1);
 	}
@@ -104,7 +111,7 @@ public final class FileProcessor implements FileProcessorI{
 		  try {
 			bw.close();
 		} catch (IOException e) {
-			System.out.println("Exception closing buffered writer for file: " + fileName);
+			System.err.println("Exception closing buffered writer for file: " + fileName);
 			e.printStackTrace();
 		}
 	  }
@@ -112,7 +119,7 @@ public final class FileProcessor implements FileProcessorI{
 		  try{
 			  br.close();
 		  }catch(IOException io){
-			  System.out.println("Exception closing buffered reader for file: " + fileName);
+			  System.err.println("Exception closing buffered reader for file: " + fileName);
 				io.printStackTrace();		  
 		  }
 	  }
