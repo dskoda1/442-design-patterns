@@ -39,6 +39,9 @@ public class RandomGen {
 	char randomChar(){
 		int randInt = randomInt();
 		randInt = randInt % (127 - 33) + 33;
+		if(randInt == 60 || randInt == 62){
+			return randomChar();
+		}
 		return Character.toChars(randInt)[0];
 	}
 	

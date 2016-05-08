@@ -93,12 +93,25 @@ public class MyAllTypesFirst extends SerializableObject {
 	
 	@Override
 	public boolean equals(Object obj){
-		MyAllTypesFirst m2 = (MyAllTypesFirst) obj;
-		
-		
-		
-		
-		return false;
+		MyAllTypesFirst lhs = (MyAllTypesFirst) obj;
+		if(	myInt == lhs.myInt &&
+			myString.equals(lhs.myString) &&
+			myDouble == lhs.myDouble &&
+			myLong == lhs.myLong &&
+			myChar == lhs.myChar){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	@Override
+	public int hashCode(){
+		return (new Integer(myInt).hashCode() + 
+				myString.hashCode() +
+				new Double(myDouble).hashCode() + 
+				new Long(myLong).hashCode() + 
+				Character.getNumericValue(myChar));
 	}
 	
 }

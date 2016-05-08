@@ -87,4 +87,27 @@ public class MyAllTypesSecond extends SerializableObject {
 				"myShortS: " + myShortS +  "\n" +
 				"myCharS: " + myCharS +  "\n";
 	}
+	@Override
+	public boolean equals(Object obj){
+		
+		MyAllTypesSecond lhs = (MyAllTypesSecond) obj;
+		if(	myIntS == lhs.myIntS &&
+			myStringS.equals(lhs.myStringS) &&
+			myFloatS == lhs.myFloatS &&
+			myShortS == lhs.myShortS &&
+			myCharS == lhs.myCharS){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	@Override
+	public int hashCode(){
+		return (new Integer(myIntS).hashCode() + 
+				myStringS.hashCode() +
+				new Float(myFloatS).hashCode() + 
+				new Short(myShortS).hashCode() + 
+				Character.getNumericValue(myCharS));
+	}
 }
